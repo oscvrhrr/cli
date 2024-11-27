@@ -1,38 +1,86 @@
 class Barista
-  attr_accessor :coffee, :milk, :temp
+  attr_accessor :coffee, :milk, :temp, :confirm
 
   def initialize
     @coffee = coffee
     @milk = milk 
     @temp = "hot"
+    @confirm = nil
   end
 
   def menu
     puts "Our menu:
     Coffee: Cappuccino, Latte, Espresso, Americano
-    Milk: Regular, Oatmilk, AlmondMilk"
+    Milk: Regular, Oat, Almond"
+    puts "\n"
   end
 
 
   def place_order
-    puts "Hello! what coffee can I get you?"
+    puts "Hello! What coffee can I get you?"
+    puts "\n"
     self.coffee = gets.chomp.capitalize
+
     if self.coffee == "Americano" || self.coffee == "Espresso"
+
       puts "Ok Ive got an #{self.coffee} coming up"
+      puts "\n"
       return
+
     elsif self.coffee == "Latte" || self.coffee == "Cappuccino"
-      puts "Ok Ive got an #{self.coffee} coming up"
-      puts "Would you like regular, oatmilk, or almondmilk"
-      self.milk = gets.chomp.capitalize
+
+        puts "Ok a #{self.coffee}.."
+        puts "Would you like regular, oatmilk, or almondmilk?"
+        puts "\n"
+        self.milk = gets.chomp.capitalize
+
       if self.coffee == 'Latte'
-        puts "would you like you latte iced or hot?"
-        self.temp = gets.chomp.capitalize
+
+        puts "Would you like your latte iced or hot?"
+        puts "\n"
+        self.temp = gets.chomp
+        
       end
+    else
+      puts "Sorry we do not serve #{self.coffee}, please order of the menu"
+      puts "\n"
+      place_order
     end
+
   end
 
   def confirm_order
-    puts "your order is a #{@temp} #{@coffee}"
+
+    if self.milk == nil 
+      puts "Your order is a #{self.coffee}. Does your order look correct?"
+      puts "\n"
+      self.confirm = gets.chomp
+    elsif self.milk && self.temp == 'iced'
+      puts "Your order is an iced #{self.coffee} with #{self.milk} milk. Does your order look correct?"
+      puts "\n"
+      self.confirm = gets.chomp
+    elsif self.milk && self.temp == 'hot'
+      puts "Your order is a hot #{self.coffee} with #{self.milk} milk. Does your order look correct?"
+      puts "\n"
+      self.confirm = gets.chomp
+    else
+      puts "Sorry, what did you mean?.."
+      puts "\n"
+      confirm_order
+    end
+
+    if self.confirm == 'yes'
+      puts "Ok your order will be up in 3 mins.."
+      puts "\n"
+      return
+    elsif  self.confirm == 'no'
+      place_order
+    else
+      puts "Sorry, what did you mean?.."
+      puts "\n"
+      confirm_order
+    end
+
   end
 
   def start_shift
@@ -40,6 +88,5 @@ class Barista
     place_order
     confirm_order
   end
-
 
 end
