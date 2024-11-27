@@ -17,7 +17,7 @@ Our menu:
 Hello! What coffee can I get you?
 ```
 
-2. Type in "latte"
+2. Options include words listed on the menu. Type in "latte"
 ```
 Ok a Latte..
 Would you like regular, oatmilk, or almondmilk?
