@@ -4,7 +4,7 @@ This software can make 4 different beverages with 3 options of milk. It can dete
 
 
 ### Steps to run project
-I will be simulating an order an going through the flow of placing an order.
+I will be simulating an order and going through the flow of placing an order.
 
 1. run program - ruby app.rb
 
